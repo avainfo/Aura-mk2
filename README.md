@@ -182,18 +182,18 @@ The system should remain usable without cloud connectivity.
 ## Repository structure
 
 ```text
-aura-mk2/
+Aura-mk2/
 ├── README.md
+├── admin-console/
+├── config/
 ├── core-system/
 ├── display-runtime/
-├── perception-service/
-├── modules/
-├── admin-console/
-├── shared/
-├── config/
 ├── docs/
-├── tools/
-└── scripts/
+├── modules/
+├── perception-service/
+├── scripts/
+├── shared/
+└── tools/
 ```
 
 ## Suggested technology stack
