@@ -1,45 +1,59 @@
 # Admin Console
 
-The Admin Console is the configuration and management interface for AURA MK II.
+The Admin Console is the configuration and management layer for AURA MK II installations.
 
-It is not part of the first rendering loop. It exists to manage the system once the core prototype works.
+It provides a dedicated interface for managing display layouts, scenes, modules, device status, diagnostics, and optional remote configuration.
 
-## Responsibilities
+## Scope
 
-The Admin Console may later manage:
+- Screen layout configuration
+- Logical canvas setup
+- Scene management
+- Module enablement and settings
+- Device status overview
+- Diagnostics access
+- Update and maintenance settings
+- Optional cloud configuration
 
-- screen layout
-- canvas size
-- enabled modules
-- scenes
-- device status
-- system updates
-- optional cloud configuration
-- diagnostics
+## Interfaces
 
-## Possible forms
+Reads from:
 
-The Admin Console can become:
+- local configuration files
+- device status reports
+- module metadata
+- diagnostic state
+- optional remote configuration sources
 
-- a local web dashboard
-- a Flutter mobile app
-- a tablet app
-- a desktop configuration tool
+Writes to:
 
-The exact interface is not decided yet.
+- local configuration files
+- scene definitions
+- module settings
+- system maintenance settings
+- optional cloud-backed configuration
 
-## First development goal
+## Architecture position
 
-For the MVP, this folder can stay minimal.
+The Admin Console is not part of the real-time rendering path.
 
-Initial configuration should be handled through YAML and JSON files in the `config/` folder.
+The interactive surface must remain operational without the Admin Console running. Runtime orchestration is handled by the Core System, and rendering is handled by the Display Runtime.
 
-The Admin Console should only be implemented once the Core System and Display Runtime are working.
+## Implementation options
 
-## Not responsible for
+The Admin Console may be implemented as one or more of the following:
 
-- Rendering the main interactive surface
-- Running the Core System
-- Detecting gestures
-- Being required for local operation
+- local web dashboard
+- mobile application
+- tablet application
+- desktop configuration tool
 
+The implementation can evolve without changing the runtime architecture.
+
+## Related documentation
+
+Planned documentation:
+
+- `docs/architecture.md`
+- `docs/configuration.md`
+- `docs/deployment.md`
