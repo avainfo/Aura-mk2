@@ -42,7 +42,7 @@ Start with:
 ```text
 [x] config/local/screens.yaml
 [ ] config/local/modules.yaml
-[ ]config/local/scenes.yaml
+[ ] config/local/scenes.yaml
 ```
 
 These files should be enough to describe a static multi-display prototype.
