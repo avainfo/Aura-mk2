@@ -1,0 +1,17 @@
+canvas:
+  width: 5760
+  height: 1080
+
+screens:
+  - id: "test_display_left"
+    viewport:
+      x: 0
+      y: 0
+      width: 1024
+      height: 600
+  - id: "test_display_right"
+    viewport:
+      x: 1024
+      y: 0
+      width: 1024
+      height: 600
