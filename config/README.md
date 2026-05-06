@@ -40,9 +40,9 @@ config/
 Start with:
 
 ```text
-config/local/screens.yaml
-config/local/modules.yaml
-config/local/scenes.yaml
+[x] config/local/screens.yaml
+[ ] config/local/modules.yaml
+[ ]config/local/scenes.yaml
 ```
 
 These files should be enough to describe a static multi-display prototype.
