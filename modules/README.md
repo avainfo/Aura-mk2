@@ -1,68 +1,57 @@
 # Modules
 
-Modules are self-contained features that can be enabled, disabled, configured, and displayed as windows on the AURA MK II surface.
+Modules are self-contained feature units that extend the AURA MK II surface without changing the Core System.
 
-Examples include recipe, timer, weather, calendar, smart-home, media, and diagnostics.
+They define functional capabilities such as recipes, timers, weather, smart-home controls, media, diagnostics, or other context-specific features.
 
-## Responsibilities
+## Scope
 
-Each module should define:
+- Module metadata
+- Module configuration schema
+- Default window definitions
+- Supported events
+- Emitted actions
+- Permission requirements
+- Display view references
 
-- metadata
-- default window size
-- handled events
-- emitted events
-- permissions
-- configuration schema
-- display view
+## Interfaces
 
-## Module philosophy
+Read by:
 
-Modules should provide functionality without modifying the Core System.
+- Core System for module discovery, enablement, state, and routing
+- Display Runtime for rendering module views
+- Admin Console for configuration and module management
 
-The Core System manages modules.
-The Display Runtime renders module views.
+May define:
 
-## Example module manifest
+- default layout behavior
+- handled gesture or system events
+- module-specific settings
+- runtime state requirements
+- emitted actions or notifications
 
-```json
-{
-  "id": "timer",
-  "name": "Timer",
-  "version": "0.1.0",
-  "description": "A kitchen timer module for AURA MK II.",
-  "permissions": [
-    "display.window.create",
-    "display.window.update",
-    "events.gesture.receive"
-  ],
-  "default_window": {
-    "width": 480,
-    "height": 280,
-    "can_move": true,
-    "can_resize": false,
-    "can_span_screens": false
-  }
-}
-```
+## Architecture position
 
-## First development goal
+Modules provide functionality. They do not own global orchestration.
 
-Start with static built-in modules:
+The Core System manages module lifecycle, routing, and state coordination. The Display Runtime renders module views according to the active scene and assigned viewport.
 
-* timer
-* recipe
-* weather
-* diagnostics
+## Initial module set
 
-Do not build a complex plugin system yet.
+Planned built-in modules:
 
-The first goal is to prove that modules can be enabled, disabled, positioned, and rendered from configuration.
+- `recipe`
+- `timer`
+- `weather`
+- `diagnostics`
 
-## Not responsible for
+Additional modules can be added once the module contract is stable.
 
-* Managing the global canvas
-* Owning display synchronization
-* Accessing raw sensor data
-* Replacing the Core System
+## Related documentation
+
+Planned documentation:
+
+- `docs/module-system.md`
+- `docs/configuration.md`
+- `docs/protocol.md`
 
