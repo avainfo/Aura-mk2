@@ -1,10 +1,19 @@
 # Scripts
 
-This folder contains helper scripts for development, setup, testing, and local execution.
+This folder contains helper scripts for local development, setup, testing, formatting, and service management.
 
-Scripts should be simple, explicit, and safe to run on a development machine.
+Scripts should remain explicit, readable, and safe to run from a development environment.
 
-## Possible scripts
+## Scope
+
+- Start and stop local development services
+- Run local checks
+- Format project files
+- Clean generated build artifacts
+- Install or update service files
+- Support repeatable development workflows
+
+## Structure
 
 ```text
 scripts/
@@ -15,42 +24,25 @@ scripts/
 └── clean_build.sh
 ```
 
-## Responsibilities
+## Safety principles
 
-Scripts may be used to:
-
-* start the local development stack
-* stop running services
-* install systemd service files
-* format code
-* clean build artifacts
-* run local checks
-
-## First development goal
-
-Create a development script that starts:
-
-* the Core System
-* one or more Display Runtime instances
-* optional simulated gesture events
-
-Example:
-
-```bash
-./scripts/start_dev_stack.sh
-```
-
-## Rules
-
-* Scripts should be readable.
 * Scripts should fail clearly.
+* Scripts should avoid hidden side effects.
 * Scripts should not silently modify system files.
-* Production installation scripts should ask for explicit confirmation before using `sudo`.
+* Any script requiring elevated privileges should make that requirement explicit.
+* Production-oriented scripts should be separated from local development helpers.
 
-## Not responsible for
+## Architecture position
 
-* Business logic
-* Runtime orchestration logic
-* UI rendering
-* Protocol definitions
+Scripts automate workflows around the project.
+
+They should not contain core business logic, runtime orchestration logic, rendering logic, or protocol definitions.
+
+## Related documentation
+
+Planned documentation:
+
+* `docs/deployment.md`
+* `docs/configuration.md`
+* `docs/roadmap.md`
 
