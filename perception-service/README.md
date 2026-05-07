@@ -1,55 +1,56 @@
 # Perception Service
 
-The Perception Service converts sensor input into abstract interaction events.
+The Perception Service is the sensing layer of AURA MK II.
 
-It is responsible for reading IR or depth sensor data and emitting events such as presence, distance, gestures, and active zones.
+It converts local IR or depth sensor input into abstract interaction events that can be consumed by the Core System.
 
-## Responsibilities
+## Scope
 
-- Read IR or depth sensor data
-- Detect user presence
-- Estimate distance zones
-- Detect simple gestures
-- Emit abstract events to the Core System
-- Keep raw sensor data isolated from the UI
+- IR or depth sensor access
+- Presence detection
+- Distance zone estimation
+- Gesture recognition
+- Active zone detection
+- Confidence scoring
+- Local event publishing
+- Sensor pipeline isolation
 
-## Privacy rule
+## Interfaces
 
-```text
-The UI receives events, not images.
-```
+Receives:
 
-The Perception Service should not expose raw camera frames to the Display Runtime or modules.
+- sensor frames or depth data
+- local perception configuration
+- calibration parameters
 
-## Example event
+Emits:
 
-```json
-{
-  "type": "gesture_event",
-  "gesture": "swipe_right",
-  "zone": "center",
-  "confidence": 0.92,
-  "timestamp_ms": 123456
-}
-```
+- presence events
+- distance events
+- gesture events
+- active zone updates
+- confidence metadata
+- sensor health status
 
-## First development goal
+## Architecture position
 
-The first version should not require real hardware.
+The Perception Service is isolated from the rendering layer.
 
-Start with a simulator that emits fake gesture events:
+It does not control windows, scenes, or modules directly. It emits abstract events to the Core System, which decides how those events affect the interface.
 
-* `presence_detected`
-* `swipe_left`
-* `swipe_right`
-* `hold`
-* `zone_changed`
+Raw sensor data must remain inside the perception pipeline. The Display Runtime and modules should receive events, not images.
 
-Real IR or depth camera support can come later.
+## Privacy model
 
-## Not responsible for
+The service is designed around local perception and minimal data exposure.
 
-* Rendering UI
-* Moving windows directly
-* Switching scenes directly
-* Sending raw images to other services
+Its output should be limited to normalized events such as presence, distance, gesture type, active zone, confidence, and timestamps.
+
+## Related documentation
+
+Planned documentation:
+
+- `docs/architecture.md`
+- `docs/gesture-navigation.md`
+- `docs/privacy-model.md`
+- `docs/protocol.md`
