@@ -1,0 +1,58 @@
+default_scene: cooking_mode
+
+scenes:
+  - id: cooking_mode
+    name: Cooking Mode
+    description: Main cooking layout for the local multi-display prototype.
+    windows:
+      - id: recipe_main
+        module: recipe
+        x: 120
+        y: 60
+        width: 900
+        height: 460
+        z_index: 10
+
+      - id: timer_panel
+        module: timer
+        x: 1120
+        y: 60
+        width: 360
+        height: 220
+        z_index: 20
+
+      - id: weather_small
+        module: weather
+        x: 1540
+        y: 60
+        width: 360
+        height: 220
+        z_index: 5
+
+      - id: diagnostics_bar
+        module: diagnostics
+        x: 0
+        y: 540
+        width: 2048
+        height: 60
+        z_index: 100
+
+  - id: idle_mode
+    name: Idle Mode
+    description: Minimal ambient layout for standby display.
+    windows:
+      - id: weather_idle
+        module: weather
+        x: 120
+        y: 120
+        width: 400
+        height: 240
+        z_index: 5
+
+      - id: diagnostics_bar
+        module: diagnostics
+        x: 0
+        y: 540
+        width: 2048
+        height: 60
+        z_index: 100
