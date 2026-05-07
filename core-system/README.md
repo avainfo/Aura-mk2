@@ -1,50 +1,59 @@
 # Core System
 
-The Core System is the local brain of AURA MK II.
+The Core System is the local orchestration layer of AURA MK II.
 
-It manages the global state of the interactive surface: displays, logical canvas, windows, scenes, modules, gestures, synchronization, and system health.
+It owns the runtime state of the interactive surface, including the logical canvas, display nodes, windows, scenes, modules, events, synchronization, and system health.
 
-## Responsibilities
+## Scope
 
-- Register display nodes
-- Maintain the global logical canvas
-- Manage windows and scenes
-- Load and route modules
-- Receive abstract perception events
-- Synchronize display runtimes
-- Monitor node health and connection state
+- Display node registration
+- Logical canvas management
+- Window state and placement
+- Scene state and transitions
+- Module orchestration
+- Event routing
+- Display synchronization
+- Runtime health monitoring
 
-## Core rule
+## Interfaces
 
-```text
-The Core System decides.
-The Display Runtime renders.
-```
+Receives:
+
+- local configuration data
+- display registration messages
+- display heartbeat messages
+- gesture and presence events
+- module action requests
+
+Emits:
+
+- display viewport assignments
+- state snapshots
+- window updates
+- scene changes
+- synchronization commands
+- diagnostic status updates
+
+## Architecture position
+
+The Core System is responsible for coordination and state management.
+
+It does not render the interface and does not access raw sensor data. Rendering is handled by the Display Runtime. Sensor processing is handled by the Perception Service. Configuration is loaded from the `config/` layer.
 
 ## Main concepts
 
-* **Logical Canvas**: one large virtual surface shared across all displays
-* **Display Registry**: list of connected display nodes and their viewports
-* **Window Manager**: placement, movement, sizing, and state of windows
-* **Scene Manager**: predefined layouts for specific contexts
-* **Module Manager**: enabled features and module state
-* **Sync Engine**: state distribution to display nodes
-* **Event Router**: converts gesture and system events into actions
+- **Logical Canvas**: virtual surface shared across all display nodes
+- **Display Registry**: registered display nodes and their assigned viewports
+- **Window Manager**: position, size, visibility, and state of windows
+- **Scene Manager**: predefined layouts and transitions
+- **Module Manager**: enabled modules and module-level state
+- **Event Router**: maps system and perception events to actions
+- **Sync Engine**: distributes state updates to display runtimes
 
-## First development goal
+## Related documentation
 
-The first version should:
+Planned documentation:
 
-* load screen configuration from `config/local/screens.yaml`
-* create a logical canvas
-* expose a basic WebSocket server
-* accept display node registration
-* send a static state snapshot to connected displays
-
-## Not responsible for
-
-* Rendering the UI
-* Reading raw camera data
-* Managing cloud accounts
-* Running module UI code directly
-
+- `docs/architecture.md`
+- `docs/multi-screen-orchestration.md`
+- `docs/protocol.md`
