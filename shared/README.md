@@ -1,20 +1,19 @@
 # Shared Protocol and Types
 
-This folder contains shared schemas, message definitions, examples, and protocol conventions used by multiple AURA MK II components.
+This folder contains shared protocol definitions, schemas, examples, and type contracts used across AURA MK II components.
 
-It helps keep the Core System, Display Runtime, Perception Service, modules, and tools aligned.
+It provides a common language between the Core System, Display Runtime, Perception Service, modules, configuration tools, and development utilities.
 
-## Responsibilities
+## Scope
 
-This folder may contain:
+- Protocol message schemas
+- Shared runtime types
+- JSON schema definitions
+- Example protocol payloads
+- Validation contracts
+- Cross-component data conventions
 
-- JSON schemas
-- protocol message definitions
-- shared type definitions
-- example messages
-- validation rules
-
-## Suggested structure
+## Structure
 
 ```text
 shared/
@@ -34,33 +33,33 @@ shared/
     └── gesture_event.json
 ```
 
-## First development goal
+## Architecture position
 
-Define the first protocol messages:
+Shared definitions are used to keep component boundaries explicit and consistent.
+
+The Core System, Display Runtime, Perception Service, Admin Console, and developer tools should rely on these contracts when exchanging data or validating configuration.
+
+This folder should contain contracts and examples, not runtime business logic.
+
+## Initial protocol surface
+
+Planned protocol messages include:
 
 * `register_display`
 * `display_assigned`
 * `heartbeat`
 * `state_snapshot`
 * `window_update`
+* `scene_change`
 * `gesture_event`
+* `presence_event`
+* `diagnostic_status`
 
-## Example message
+## Related documentation
 
-```json
-{
-  "type": "register_display",
-  "node_id": "display_left",
-  "resolution": {
-    "width": 1920,
-    "height": 1080
-  }
-}
-```
+Planned documentation:
 
-## Not responsible for
+* `docs/protocol.md`
+* `docs/configuration.md`
+* `docs/architecture.md`
 
-* Running services
-* Rendering UI
-* Managing runtime state
-* Storing private user data
