@@ -1,23 +1,22 @@
 # Configuration
 
-This folder contains local and optional remote configuration files for AURA MK II.
+This folder contains configuration files used to describe local AURA MK II installations.
 
-The system should remain local-first. Cloud configuration may exist later, but the main surface must work without internet access.
+Configuration defines how the system is assembled: screen layout, logical canvas, enabled modules, scenes, runtime behavior, and optional integration settings.
 
-## Responsibilities
+## Scope
 
-Configuration files define:
+- Local installation configuration
+- Logical canvas dimensions
+- Display node layout
+- Enabled and disabled modules
+- Scene definitions
+- Logging settings
+- Security settings
+- Update settings
+- Optional cloud integration settings
 
-- canvas size
-- screen positions
-- enabled modules
-- scenes
-- logging behavior
-- security options
-- update settings
-- optional cloud settings
-
-## Suggested structure
+## Structure
 
 ```text
 config/
@@ -35,52 +34,35 @@ config/
     └── updates.yaml
 ```
 
-## First development goal
+## Configuration layers
 
-Start with:
+### `local/`
 
-```text
-[x] config/local/screens.yaml
-[ ] config/local/modules.yaml
-[ ] config/local/scenes.yaml
-```
+Installation-specific configuration for local development and runtime setup.
 
-These files should be enough to describe a static multi-display prototype.
+This includes screen layout, scene definitions, enabled modules, and local behavior.
 
-## Example screen layout
+### `firebase/`
 
-```yaml
-canvas:
-  width: 5760
-  height: 1080
+Optional Firebase-related configuration examples.
 
-screens:
-  - id: display_left
-    viewport:
-      x: 0
-      y: 0
-      width: 1920
-      height: 1080
+Cloud configuration must remain optional. The interactive surface should continue to operate without internet access.
 
-  - id: display_center
-    viewport:
-      x: 1920
-      y: 0
-      width: 1920
-      height: 1080
+### `system/`
 
-  - id: display_right
-    viewport:
-      x: 3840
-      y: 0
-      width: 1920
-      height: 1080
-```
+System-level configuration for logging, security, updates, and runtime behavior.
 
-## Not responsible for
+## Architecture position
 
-* Application code
-* UI rendering
-* Sensor processing
-* Runtime state persistence
+Configuration describes the installation. It should not contain application logic.
+
+The Core System loads configuration and applies it to the runtime state. Display Runtime, Perception Service, modules, and tools should consume configuration through defined interfaces instead of duplicating parsing logic.
+
+## Related documentation
+
+Planned documentation:
+
+* `docs/configuration.md`
+* `docs/architecture.md`
+* `docs/deployment.md`
 
