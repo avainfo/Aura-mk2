@@ -1,6 +1,6 @@
 canvas:
-  width: 5760
-  height: 1080
+  width: 2048
+  height: 600
 
 screens:
   - id: "test_display_left"
