@@ -2,10 +2,9 @@
 
 This folder contains the technical documentation for AURA MK II.
 
-The root `README.md` gives a short overview.
-This folder contains the detailed architecture, protocols, configuration, and design decisions.
+The root `README.md` provides the project overview. Detailed architecture, runtime behavior, configuration, protocol, deployment, and design decisions are documented here.
 
-## Documents
+## Documentation index
 
 ```text
 docs/
@@ -20,46 +19,47 @@ docs/
 └── roadmap.md
 ```
 
-## Recommended content
+## Documents
 
 ### `architecture.md`
 
-Global system architecture and component responsibilities.
+Global architecture, component responsibilities, runtime layers, and system boundaries.
 
 ### `multi-screen-orchestration.md`
 
-How multiple physical displays become one logical canvas.
+Logical canvas model, physical display mapping, viewport assignment, synchronization, and window behavior across multiple screens.
 
 ### `module-system.md`
 
-How modules are defined, enabled, disabled, configured, and rendered.
+Module contract, metadata, configuration, lifecycle, permissions, events, and rendering integration.
 
 ### `protocol.md`
 
-Messages exchanged between Core System, Display Runtime, and Perception Service.
+Message formats exchanged between Core System, Display Runtime, Perception Service, modules, and tools.
 
 ### `configuration.md`
 
-YAML and JSON configuration examples.
+Local configuration structure, YAML and JSON examples, screen layout, modules, scenes, and optional integration settings.
 
 ### `gesture-navigation.md`
 
-Gesture vocabulary, intent mapping, and interaction rules.
+Gesture vocabulary, active zones, intent mapping, confidence handling, and interaction rules.
 
 ### `privacy-model.md`
 
-Sensor isolation, local perception, and raw data handling rules.
+Local perception model, raw sensor isolation, event-only data flow, and privacy-oriented design constraints.
 
 ### `deployment.md`
 
-Linux services, systemd, startup order, watchdogs, and updates.
+Linux services, startup order, systemd units, logging, watchdog behavior, update flow, and runtime maintenance.
 
 ### `roadmap.md`
 
-Prototype milestones and development phases.
+Prototype milestones, implementation phases, MVP boundaries, and planned evolution.
 
-## Rule
+## Documentation approach
 
-Keep the root README short.
-Put detailed explanations here.
+The root README should stay concise and product-oriented.
+
+Detailed technical explanations belong in this folder.
 
