@@ -1,58 +1,57 @@
 # Display Runtime
 
-The Display Runtime is the application running on each physical display.
+The Display Runtime is the rendering layer of AURA MK II.
 
-Each display node connects to the Core System, receives its assigned viewport, and renders only its portion of the global logical canvas.
+It runs on each physical display node and renders the portion of the global logical canvas assigned by the Core System.
 
-## Responsibilities
+## Scope
 
-- Connect to the Core System
-- Register as a display node
-- Receive assigned viewport information
-- Receive canvas, windows, scenes, and module state
-- Render the local viewport
-- Report health, FPS, errors, and connection status
+- Display node startup
+- Core System connection
+- Display registration
+- Viewport assignment handling
+- Local canvas viewport rendering
+- Module window rendering
+- Runtime status reporting
+- Reconnection handling
 
-## Core rule
+## Interfaces
 
-```text
-Display nodes do not decide the global UI state.
-They render what the Core System sends.
-```
+Receives:
 
-## Example
+- viewport assignments
+- state snapshots
+- window updates
+- scene changes
+- module rendering data
+- synchronization commands
 
-A global canvas can be 5760x1080.
+Emits:
 
-A display runtime may receive:
+- display registration messages
+- heartbeat messages
+- runtime status updates
+- rendering diagnostics
+- connection error reports
 
-```json
-{
-  "display_id": "display_left",
-  "viewport": {
-    "x": 0,
-    "y": 0,
-    "width": 1920,
-    "height": 1080
-  }
-}
-```
+## Architecture position
 
-This display only renders content intersecting that viewport.
+The Display Runtime is part of the real-time visual path.
 
-## First development goal
+It does not own the global interface state and does not decide scene transitions, window placement, or module orchestration. These decisions are handled by the Core System.
 
-The first version should:
+Each Display Runtime instance renders only the content intersecting its assigned viewport.
 
-* run as a Flutter Linux app
-* load or receive a viewport
-* render a static canvas state
-* display simple module windows as rectangles
-* later connect to the Core System through WebSocket
+## Rendering model
 
-## Not responsible for
+The global surface is represented as a logical canvas.
 
-* Detecting gestures
-* Managing modules globally
-* Deciding scene changes
-* Owning the global canvas state
+Each display node receives a viewport describing which part of that canvas it owns. The runtime clips the global scene to that viewport and renders the visible windows locally.
+
+## Related documentation
+
+Planned documentation:
+
+- `docs/architecture.md`
+- `docs/multi-screen-orchestration.md`
+- `docs/protocol.md`
