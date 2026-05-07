@@ -26,11 +26,11 @@ scripts/
 
 ## Safety principles
 
-* Scripts should fail clearly.
-* Scripts should avoid hidden side effects.
-* Scripts should not silently modify system files.
-* Any script requiring elevated privileges should make that requirement explicit.
-* Production-oriented scripts should be separated from local development helpers.
+- Scripts should fail clearly.
+- Scripts should avoid hidden side effects.
+- Scripts should not silently modify system files.
+- Any script requiring elevated privileges should make that requirement explicit.
+- Production-oriented scripts should be separated from local development helpers.
 
 ## Architecture position
 
@@ -42,7 +42,7 @@ They should not contain core business logic, runtime orchestration logic, render
 
 Planned documentation:
 
-* `docs/deployment.md`
-* `docs/configuration.md`
-* `docs/roadmap.md`
+- `docs/deployment.md`
+- `docs/configuration.md`
+- `docs/roadmap.md`
 

@@ -45,21 +45,21 @@ This folder should contain contracts and examples, not runtime business logic.
 
 Planned protocol messages include:
 
-* `register_display`
-* `display_assigned`
-* `heartbeat`
-* `state_snapshot`
-* `window_update`
-* `scene_change`
-* `gesture_event`
-* `presence_event`
-* `diagnostic_status`
+- `register_display`
+- `display_assigned`
+- `heartbeat`
+- `state_snapshot`
+- `window_update`
+- `scene_change`
+- `gesture_event`
+- `presence_event`
+- `diagnostic_status`
 
 ## Related documentation
 
 Planned documentation:
 
-* `docs/protocol.md`
-* `docs/configuration.md`
-* `docs/architecture.md`
+- `docs/protocol.md`
+- `docs/configuration.md`
+- `docs/architecture.md`
 

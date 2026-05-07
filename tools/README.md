@@ -35,7 +35,7 @@ They can interact with configuration files, shared protocol definitions, and loc
 
 Planned documentation:
 
-* `docs/configuration.md`
-* `docs/protocol.md`
-* `docs/multi-screen-orchestration.md`
+- `docs/configuration.md`
+- `docs/protocol.md`
+- `docs/multi-screen-orchestration.md`
 

@@ -62,7 +62,7 @@ The Core System loads configuration and applies it to the runtime state. Display
 
 Planned documentation:
 
-* `docs/configuration.md`
-* `docs/architecture.md`
-* `docs/deployment.md`
+- `docs/configuration.md`
+- `docs/architecture.md`
+- `docs/deployment.md`
 
