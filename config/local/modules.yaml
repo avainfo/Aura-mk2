@@ -1,0 +1,29 @@
+modules:
+  enabled:
+    - recipe
+    - timer
+    - weather
+    - diagnostics
+
+  disabled:
+    - calendar
+    - smart-home
+    - media
+
+module_settings:
+  recipe:
+    default_view: step_by_step
+    gesture_navigation: true
+
+  timer:
+    allow_multiple_timers: true
+    default_duration_seconds: 300
+
+  weather:
+    provider: mock
+    refresh_interval_seconds: 900
+
+  diagnostics:
+    show_display_status: true
+    show_latency: true
+    show_canvas_bounds: true
