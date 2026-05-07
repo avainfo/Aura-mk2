@@ -1,10 +1,19 @@
 # Developer Tools
 
-This folder contains development tools used to test, validate, simulate, or debug AURA MK II.
+This folder contains development utilities used to inspect, validate, simulate, and debug AURA MK II during implementation.
 
-These tools are not part of the final product runtime.
+These tools support development and testing workflows. They are not part of the production runtime.
 
-## Possible tools
+## Scope
+
+- Layout preview utilities
+- Protocol validation tools
+- Display node simulation
+- Gesture event simulation
+- Configuration inspection
+- Canvas and window debugging
+
+## Structure
 
 ```text
 tools/
@@ -16,35 +25,17 @@ tools/
     └── simulate_display_nodes.py
 ```
 
-## Responsibilities
+## Architecture position
 
-Tools may be used to:
+Developer tools operate outside the runtime system.
 
-* preview screen layouts
-* validate protocol messages
-* simulate display nodes
-* simulate gesture events
-* inspect configuration files
-* debug canvas and window placement
+They can interact with configuration files, shared protocol definitions, and local services, but they should not contain production orchestration, rendering, or perception logic.
 
-## First development goal
+## Related documentation
 
-The first useful tool should be a display node simulator.
+Planned documentation:
 
-It should help test the Core System without real hardware.
-
-Example goal:
-
-```text
-Start Core System.
-Start three simulated display nodes.
-Verify that each node receives the correct viewport.
-```
-
-## Not responsible for
-
-* Production runtime behavior
-* Main UI rendering
-* Real sensor processing
-* Cloud configuration
+* `docs/configuration.md`
+* `docs/protocol.md`
+* `docs/multi-screen-orchestration.md`
 
