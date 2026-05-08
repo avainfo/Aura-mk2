@@ -14,7 +14,7 @@ struct Screen {
 	int width, height;
 };
 
-struct ScreensConfig {
+struct ScreenConfig {
 	Canva canvas;
 	std::vector<Screen> screens;
 };
