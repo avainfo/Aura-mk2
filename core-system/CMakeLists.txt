@@ -6,6 +6,8 @@ project(AuraMk2
 	LANGUAGES CXX
 )
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 add_executable(aura_core
 	src/main.cpp
 )
