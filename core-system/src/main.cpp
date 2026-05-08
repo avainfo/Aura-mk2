@@ -16,45 +16,59 @@
  * modified, distributed, or used without prior written permission.
  */
 
-#include <iostream>
+#include <algorithm>
+#include <cstddef>
 #include <filesystem>
+#include <iostream>
+#include <vector>
 #include <string>
 #include <yaml-cpp/node/node.h>
 #include <yaml-cpp/node/parse.h>
 #include <yaml-cpp/yaml.h>
+#include "screen_configuration.hpp"
 
 using namespace std;
+using namespace aura::core;
 
 namespace fs = filesystem;
 
-struct Canva {
-	int width, height;
-};
+void parse_arguments(vector<string> argv, fs::path* config_dir) {
+	for (int i = 1; (size_t) i < argv.size(); ++i) {
+		const string arg = argv[i];
 
-struct Screen {
-	string id;
-	int x, y;
-	int width, height;
-};
+		if (arg == "--config-dir" && (size_t) (i + 1) < argv.size()) {
+			*config_dir = argv[++i];
+		}
+	}
+}
 
-struct ScreensConfig {
-	Canva canvas;
+ScreenConfig configure_screens(fs::path config_dir) {
+	YAML::Node screens_config = YAML::LoadFile((config_dir / "screens.yaml").string());
+	ScreenConfig screen_config;
 	vector<Screen> screens;
-};
+	for(YAML::Node s : screens_config["screens"]) {
+		Screen screen;
+		screen.id = s["id"].as<string>();
+		screen.x = s["viewport"]["x"].as<int>();
+		screen.y = s["viewport"]["y"].as<int>();
+		screen.width = s["viewport"]["width"].as<int>();
+		screen.height = s["viewport"]["height"].as<int>();
+		screens.push_back(screen);
+	}
+	screen_config.screens = screens;
+	return screen_config;
+}
 
 int main ([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
 	fs::path config_dir = "config/local";
 
-	for (int i = 1; i < argc; ++i) {
-		const string arg = argv[i];
+	parse_arguments(vector<string>(argv, argv + argc), &config_dir);
+	ScreenConfig screens_config = configure_screens(config_dir);
 
-		if (arg == "--config-dir" && i + 1 < argc) {
-			config_dir = argv[++i];
-		}
+	for(auto s : screens_config.screens) {
+		cout << "Screen[" << s.id << "]: " << endl;
+		cout << "    Position: (" << s.x << ", " << s.y << ")" << endl;
+		cout << "    Size: " << s.width << "x" << s.height << endl;
 	}
-
-	cout << "Hello World" << endl;
-	YAML::Node screens_config = YAML::LoadFile((config_dir / "screens.yaml").string());
-	cout << screens_config["canvas"] << endl;
 	return 0;
 }
