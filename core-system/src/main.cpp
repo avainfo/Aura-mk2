@@ -17,11 +17,11 @@
  */
 
 #include "screen_configuration.hpp"
-#include <cstddef>
 #include <filesystem>
 #include <iostream>
+#include <span>
 #include <string>
-#include <vector>
+#include <string_view>
 #include <yaml-cpp/node/node.h>
 #include <yaml-cpp/node/parse.h>
 #include <yaml-cpp/yaml.h>
@@ -39,38 +39,27 @@ void print_screen_config(ScreenConfig config) {
 	}
 }
 
-void parse_arguments(vector<string> argv, fs::path *config_dir) {
-	for (int i = 1; (size_t)i < argv.size(); ++i) {
-		const string arg = argv[i];
+void parse_arguments(span<char *> args, fs::path *config_dir) {
+	for (size_t i = 1; i < args.size(); ++i) {
+		string_view arg = args[i];
 
-		if (arg == "--config-dir" && (size_t)(i + 1) < argv.size()) {
-			*config_dir = argv[++i];
-		}
+		if (arg == "--config-dir" && (i + 1) < args.size())
+			*config_dir = args[++i];
 	}
 }
 
 ScreenConfig configure_screens(fs::path config_dir) {
-	YAML::Node screens_config =
-		YAML::LoadFile((config_dir / "screens.yaml").string());
-	ScreenConfig screen_config;
-	vector<Screen> screens;
-	for (YAML::Node s : screens_config["screens"]) {
-		Screen screen;
-		screen.id = s["id"].as<string>();
-		screen.x = s["viewport"]["x"].as<int>();
-		screen.y = s["viewport"]["y"].as<int>();
-		screen.width = s["viewport"]["width"].as<int>();
-		screen.height = s["viewport"]["height"].as<int>();
-		screens.push_back(screen);
-	}
-	screen_config.screens = screens;
-	return screen_config;
+	string path = (config_dir / "screens.yaml").string();
+	YAML::Node config_node = YAML::LoadFile(path);
+	return config_node.as<ScreenConfig>();
 }
 
-int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
+int main(int argc, char *argv[]) {
 	fs::path config_dir = "config/local";
 
-	parse_arguments(vector<string>(argv, argv + argc), &config_dir);
+	span<char*> args(argv, argc);
+
+	parse_arguments(args, &config_dir);
 	ScreenConfig screens_config = configure_screens(config_dir);
 
 	print_screen_config(screens_config);
