@@ -17,6 +17,7 @@
  */
 
 #include "screen_configuration.hpp"
+#include <exception>
 #include <filesystem>
 #include <iostream>
 #include <span>
@@ -55,13 +56,16 @@ ScreenConfig configure_screens(fs::path config_dir) {
 }
 
 int main(int argc, char *argv[]) {
-	fs::path config_dir = "config/local";
-
 	span<char *> args(argv, argc);
 
+	fs::path config_dir = "config/local";
 	parse_arguments(args, &config_dir);
-	ScreenConfig screens_config = configure_screens(config_dir);
 
-	print_screen_config(screens_config);
+	try {
+		ScreenConfig screens_config = configure_screens(config_dir);
+		print_screen_config(screens_config);
+	} catch (const exception &e) {
+		cerr << "Failed to load screen configuration: " << e.what() << "\n";
+	}
 	return 0;
 }
