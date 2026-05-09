@@ -43,6 +43,9 @@ template <> struct convert<aura::core::ScreenConfig> {
 		if (!node.IsMap() || !node["screens"])
 			return false;
 		screen_config.screens = node["screens"].as<std::vector<aura::core::Screen>>();
+		auto canvas = node["canvas"];
+		screen_config.canvas.width = canvas["width"].as<int>();
+		screen_config.canvas.height = canvas["height"].as<int>();
 		return true;
 	}
 };
