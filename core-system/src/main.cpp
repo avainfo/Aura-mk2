@@ -57,7 +57,7 @@ ScreenConfig configure_screens(fs::path config_dir) {
 int main(int argc, char *argv[]) {
 	fs::path config_dir = "config/local";
 
-	span<char*> args(argv, argc);
+	span<char *> args(argv, argc);
 
 	parse_arguments(args, &config_dir);
 	ScreenConfig screens_config = configure_screens(config_dir);
