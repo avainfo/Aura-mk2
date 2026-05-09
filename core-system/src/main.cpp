@@ -34,8 +34,8 @@ namespace fs = filesystem;
 void print_screen_config(ScreenConfig config) {
 	for (auto s : config.screens) {
 		cout << "Screen[" << s.id << "]: " << endl;
-		cout << "	 Position: (" << s.x << ", " << s.y << ")" << endl;
-		cout << "	 Size: " << s.width << "x" << s.height << endl;
+		cout << "    Position: (" << s.x << ", " << s.y << ")" << endl;
+		cout << "    Size: " << s.width << "x" << s.height << endl;
 	}
 }
 
