@@ -16,7 +16,9 @@
  * modified, distributed, or used without prior written permission.
  */
 
+#include "logical_canvas.hpp"
 #include "screen_configuration.hpp"
+#include <cstdio>
 #include <exception>
 #include <filesystem>
 #include <iostream>
@@ -52,7 +54,17 @@ void parse_arguments(span<char *> args, fs::path *config_dir) {
 ScreenConfig configure_screens(fs::path config_dir) {
 	string path = (config_dir / "screens.yaml").string();
 	YAML::Node config_node = YAML::LoadFile(path);
-	return config_node.as<ScreenConfig>();
+	ScreenConfig config = config_node.as<ScreenConfig>();
+
+	int maxWidth{0}, maxHeight{0};
+
+	for (Screen screen : config.screens) {
+		maxWidth = max(maxWidth, screen.x + screen.width);
+		maxHeight = max(maxHeight, screen.y + screen.height);
+	}
+	LogicalCanva canvas = LogicalCanva(maxWidth, maxHeight);
+	printf("Canvas Size: %ix%i\n", canvas.width(), canvas.height());
+	return config;
 }
 
 int main(int argc, char *argv[]) {
