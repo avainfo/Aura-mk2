@@ -5,7 +5,7 @@
 
 namespace aura::core {
 
-struct Canva {
+struct Canvas {
 	int width{0}, height{0};
 };
 
@@ -16,7 +16,7 @@ struct Screen {
 };
 
 struct ScreenConfig {
-	Canva canvas;
+	Canvas canvas;
 	std::vector<Screen> screens;
 };
 
