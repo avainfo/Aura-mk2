@@ -17,6 +17,7 @@
  */
 
 #include "logical_canvas.hpp"
+#include "helpers/diagnostics.hpp"
 #include "screen_configuration.hpp"
 #include <cstdio>
 #include <exception>
@@ -31,6 +32,7 @@
 
 using namespace std;
 using namespace aura::core;
+using namespace aura::core::diagnostics;
 
 namespace fs = filesystem;
 
@@ -51,11 +53,7 @@ void parse_arguments(span<char *> args, fs::path *config_dir) {
 	}
 }
 
-ScreenConfig configure_screens(fs::path config_dir) {
-	string path = (config_dir / "screens.yaml").string();
-	YAML::Node config_node = YAML::LoadFile(path);
-	ScreenConfig config = config_node.as<ScreenConfig>();
-
+bool verify_config_canvas(ScreenConfig &config) {
 	int maxWidth{0}, maxHeight{0};
 
 	for (Screen screen : config.screens) {
@@ -64,6 +62,19 @@ ScreenConfig configure_screens(fs::path config_dir) {
 	}
 	LogicalCanvas canvas(maxWidth, maxHeight);
 	printf("Canvas Size: %ix%i\n", canvas.width(), canvas.height());
+	return canvas.width() == config.canvas.width && canvas.height() == config.canvas.height;
+}
+
+ScreenConfig configure_screens(fs::path config_dir) {
+	string path = (config_dir / "screens.yaml").string();
+	YAML::Node config_node = YAML::LoadFile(path);
+	ScreenConfig config = config_node.as<ScreenConfig>();
+
+	if (!verify_config_canvas(config)) {
+		Diagnostics diag('l', "Screen Configuration", "Canvas size mismatch: configured differs from computed extents");
+		log_error(diag);
+	}
+
 	return config;
 }
 
@@ -77,7 +88,7 @@ int main(int argc, char *argv[]) {
 		ScreenConfig screens_config = configure_screens(config_dir);
 		print_screen_config(screens_config);
 	} catch (const exception &e) {
-		cerr << "Failed to load screen configuration: " << e.what() << "\n";
+		diagnostics::log_exception("Failed to load screen configuration: ", e);
 	}
 	return 0;
 }
