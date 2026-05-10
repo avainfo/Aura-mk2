@@ -28,6 +28,11 @@ DisplayViewport::DisplayViewport(int x, int y, int width, int height)
 	}
 }
 
+int DisplayViewport::x() const { return x_; }
+int DisplayViewport::y() const { return y_; }
+int DisplayViewport::width() const { return width_; }
+int DisplayViewport::height() const { return height_; }
+
 int DisplayViewport::right() const { return x_ + width_; }
 
 int DisplayViewport::bottom() const { return y_ + height_; }

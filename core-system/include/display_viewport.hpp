@@ -24,6 +24,8 @@ class DisplayViewport {
   public:
 	DisplayViewport(int x, int y, int width, int height);
 
+	int x() const;
+	int y() const;
 	int width() const;
 	int height() const;
 
