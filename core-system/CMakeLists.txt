@@ -10,6 +10,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_executable(aura_core
 	src/main.cpp
+	src/display_node.cpp
 	src/display_viewport.cpp
 	src/logical_canvas.cpp
 	src/helpers/diagnostics.cpp
