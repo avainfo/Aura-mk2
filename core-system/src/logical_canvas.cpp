@@ -20,15 +20,15 @@
 
 namespace aura::core {
 
-LogicalCanva::LogicalCanva(int width, int height) : width_(width), height_(height) {}
+LogicalCanvas::LogicalCanvas(int width, int height) : width_(width), height_(height) {}
 
-int LogicalCanva::width() const { return width_; }
+int LogicalCanvas::width() const { return width_; }
 
-int LogicalCanva::height() const { return height_; }
+int LogicalCanvas::height() const { return height_; }
 
-bool LogicalCanva::contains_point(int x, int y) const { return x >= 0 && y >= 0 && x < width_ && y < height_; }
+bool LogicalCanvas::contains_point(int x, int y) const { return x >= 0 && y >= 0 && x < width_ && y < height_; }
 
-bool LogicalCanva::contains_rect(int x, int y, int width, int height) const {
+bool LogicalCanvas::contains_rect(int x, int y, int width, int height) const {
 	if (width <= 0 || height <= 0)
 		return false;
 

@@ -62,7 +62,7 @@ ScreenConfig configure_screens(fs::path config_dir) {
 		maxWidth = max(maxWidth, screen.x + screen.width);
 		maxHeight = max(maxHeight, screen.y + screen.height);
 	}
-	LogicalCanva canvas = LogicalCanva(maxWidth, maxHeight);
+	LogicalCanvas canvas = LogicalCanvas(maxWidth, maxHeight);
 	printf("Canvas Size: %ix%i\n", canvas.width(), canvas.height());
 	return config;
 }

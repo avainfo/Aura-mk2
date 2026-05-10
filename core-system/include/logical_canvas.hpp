@@ -20,9 +20,9 @@
 
 namespace aura::core {
 
-class LogicalCanva {
+class LogicalCanvas {
   public:
-	LogicalCanva(int width, int height);
+	LogicalCanvas(int width, int height);
 
 	int width() const;
 	int height() const;
