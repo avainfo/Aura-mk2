@@ -19,7 +19,6 @@
 #include "helpers/diagnostics.hpp"
 #include "logical_canvas.hpp"
 #include "screen_configuration.hpp"
-#include <cstdio>
 #include <exception>
 #include <filesystem>
 #include <iostream>
