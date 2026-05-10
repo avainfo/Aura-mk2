@@ -61,7 +61,6 @@ bool verify_config_canvas(ScreenConfig &config) {
 		maxHeight = max(maxHeight, screen.y + screen.height);
 	}
 	LogicalCanvas canvas(maxWidth, maxHeight);
-	printf("Canvas Size: %ix%i\n", canvas.width(), canvas.height());
 	return canvas.width() == config.canvas.width && canvas.height() == config.canvas.height;
 }
 
