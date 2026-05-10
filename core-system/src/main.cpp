@@ -89,6 +89,7 @@ int main(int argc, char *argv[]) {
 		print_screen_config(screens_config);
 	} catch (const exception &e) {
 		diagnostics::log_exception("Failed to load screen configuration: ", e);
+		return 1;
 	}
 	return 0;
 }
