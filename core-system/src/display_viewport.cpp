@@ -33,9 +33,8 @@ int DisplayViewport::y() const { return y_; }
 int DisplayViewport::width() const { return width_; }
 int DisplayViewport::height() const { return height_; }
 
-int DisplayViewport::right() const { return x_ + width_; }
-
-int DisplayViewport::bottom() const { return y_ + height_; }
+int DisplayViewport::right() const noexcept { return x_ + width_; }
+int DisplayViewport::bottom() const noexcept { return y_ + height_; }
 
 bool DisplayViewport::contains_point(int x, int y) const noexcept {
 	return x >= x_ && y >= y_ && x < right() && y < bottom();

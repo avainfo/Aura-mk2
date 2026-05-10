@@ -29,12 +29,12 @@ class DisplayViewport {
 	int width() const;
 	int height() const;
 
+	int right() const noexcept;
+	int bottom() const noexcept;
+
 	bool contains_point(int x, int y) const noexcept;
 	bool contains_rect(int x, int y, int width, int height) const noexcept;
 	bool intersects_rect(int x, int y, int width, int height) const noexcept;
-
-	int right() const;
-	int bottom() const;
 
   private:
 	int x_;
