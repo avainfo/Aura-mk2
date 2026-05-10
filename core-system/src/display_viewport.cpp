@@ -28,10 +28,10 @@ DisplayViewport::DisplayViewport(int x, int y, int width, int height)
 	}
 }
 
-int DisplayViewport::x() const { return x_; }
-int DisplayViewport::y() const { return y_; }
-int DisplayViewport::width() const { return width_; }
-int DisplayViewport::height() const { return height_; }
+int DisplayViewport::x() const noexcept { return x_; }
+int DisplayViewport::y() const noexcept { return y_; }
+int DisplayViewport::width() const noexcept { return width_; }
+int DisplayViewport::height() const noexcept { return height_; }
 
 int DisplayViewport::right() const noexcept { return x_ + width_; }
 int DisplayViewport::bottom() const noexcept { return y_ + height_; }

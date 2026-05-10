@@ -24,10 +24,10 @@ class DisplayViewport {
   public:
 	DisplayViewport(int x, int y, int width, int height);
 
-	int x() const;
-	int y() const;
-	int width() const;
-	int height() const;
+	int x() const noexcept;
+	int y() const noexcept;
+	int width() const noexcept;
+	int height() const noexcept;
 
 	int right() const noexcept;
 	int bottom() const noexcept;
