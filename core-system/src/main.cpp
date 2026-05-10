@@ -16,8 +16,8 @@
  * modified, distributed, or used without prior written permission.
  */
 
-#include "logical_canvas.hpp"
 #include "helpers/diagnostics.hpp"
+#include "logical_canvas.hpp"
 #include "screen_configuration.hpp"
 #include <cstdio>
 #include <exception>

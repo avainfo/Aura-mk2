@@ -17,7 +17,6 @@
  */
 
 #include "helpers/diagnostics.hpp"
-
 #include <iostream>
 #include <string_view>
 
